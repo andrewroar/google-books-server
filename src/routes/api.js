@@ -91,4 +91,39 @@ apiRouter.get("/save", getAllSavedBooks);
 apiRouter.post("/save", saveBookInDb);
 apiRouter.delete("/books/:id", removeBookInDb);
 
+//////////////////////////////
+
+const getAllCustomCards = async (_, res) => {
+  try {
+    const customcards = await db.CustomCards.find({});
+
+    res.json({
+      results: customcards,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+const AddCustomCards = async (req, res) => {
+  try {
+    const payload = req.body;
+
+    await db.CustomCards.create(payload);
+
+    res.json({
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+apiRouter.get("/customcards", getAllCustomCards);
+apiRouter.post("/customcards", AddCustomCards);
+
 module.exports = apiRouter;
