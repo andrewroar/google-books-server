@@ -23,6 +23,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
+  description: { type: String, required: true },
 });
 
 const CustomCards = mongoose.model("CustomCards", schema);
