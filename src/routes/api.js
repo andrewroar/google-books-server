@@ -110,7 +110,7 @@ const getAllCustomCards = async (_, res) => {
 const getOneCustomCards = async (_, res) => {
   const { id } = req.params;
   try {
-    const customcards = await db.CustomCards.findById(id);
+    const customcards = await db.CustomCards.find({ _id: id });
 
     res.json({
       results: customcards,
