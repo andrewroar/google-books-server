@@ -154,6 +154,22 @@ const VoteCard = async (req, res) => {
   }
 };
 
+const removeCard = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await db.CustomCards.findByIdAndDelete(id);
+
+    res.json({
+      success: true,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 apiRouter.get("/customcards", getAllCustomCards);
 apiRouter.post("/customcards", AddCustomCards);
 apiRouter.delete("/customcards/:id", removeCard);
