@@ -172,8 +172,7 @@ const removeCard = async (req, res) => {
 
 apiRouter.get("/customcards", getAllCustomCards);
 apiRouter.post("/customcards", AddCustomCards);
-apiRouter.delete("/customcards/:id", removeCard);
+//apiRouter.delete("/customcards/:id", removeCard);
 apiRouter.put("/customcards/vote/:id", VoteCard);
-apiRouter.put("/customcards/edit/:id", VoteCard);
 
 module.exports = apiRouter;
