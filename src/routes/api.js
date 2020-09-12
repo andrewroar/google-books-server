@@ -107,6 +107,21 @@ const getAllCustomCards = async (_, res) => {
   }
 };
 
+const getAllOneCards = async (_, res) => {
+  const { id } = req.params;
+  try {
+    const customcards = await db.CustomCards.findById(id);
+
+    res.json({
+      results: customcards,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 const AddCustomCards = async (req, res) => {
   try {
     const payload = req.body;
@@ -155,6 +170,7 @@ const removeCard = async (req, res) => {
 };
 
 apiRouter.get("/customcards", getAllCustomCards);
+apiRouter.get("/customcards/:id", getOneCustomCards);
 apiRouter.post("/customcards", AddCustomCards);
 apiRouter.delete("/customcards/:id", removeCard);
 apiRouter.put("/customcards/vote/:id", VoteCard);
